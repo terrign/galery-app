@@ -1,0 +1,13 @@
+.navLink {
+  gap: 5px;
+}
+
+.active {
+  background-color: var(--cl-light-blue);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover {
+    background-color: var(--cl-light-blue);
+  }
+}

@@ -1,0 +1,82 @@
+:root {
+  --max-width: 1100px;
+  --border-radius: 5px;
+  --font-color-main: rgb(38, 104, 38);
+  --border-color: rgba(32, 99, 32, 0.24);
+  --padding: 10px;
+
+  --cl-dark-blue: rgb(19, 0, 90);
+  --cl-blue: rgb(0, 51, 124);
+  --cl-light-blue: rgba(28, 129, 173, 0.185);
+  --cl-green: rgb(3, 201, 136);
+
+  --width-desktop: 1440px;
+  --width-tablet: 768px;
+  --width-mobile: 425px;
+  --width-mobile-xs: 320px;
+  --font-xl: 1.1rem;
+}
+
+html {
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+html,
+body,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+  color: var(--font-color-main);
+}
+
+li {
+  list-style: none;
+  display: block;
+}
+
+input,
+textarea {
+  font-size: 1rem;
+}
+
+.clickable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color-main);
+  font-weight: 700;
+  text-decoration: none;
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  font-size: var(--font-xl);
+}
+
+.border {
+  border: thin solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .clickable:hover {
+    background-color: var(--cl-light-blue);
+    cursor: pointer;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-color-main: rgb(97, 207, 97);
+    --border-color: rgba(3, 201, 135, 0.336);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}

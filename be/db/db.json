@@ -179,54 +179,6 @@
       "title": "aliqua",
       "desc": "do sit nostrud id voluptate exercitation elit dolor nostrud eiusmod nostrud labore ipsum minim ut Lorem cillum velit tempor do laborum ea mollit consequat voluptate nostrud non tempor",
       "image": "https://fastly.picsum.photos/id/384/320/425.jpg?hmac=I_Qrv5uXBMSOFDByFa5gs_nw9ea1MRbiK3l67zNxiBQ"
-    },
-    {
-      "id": "ca5bda39-7245-4f83-8b58-364f1d471067",
-      "title": "as",
-      "desc": "dasd",
-      "image": "http://localhost:4001/storage/ca5bda39-7245-4f83-8b58-364f1d471067.jpg"
-    },
-    {
-      "id": "ff800c8d-dbee-49e1-a020-8874cb213a0b",
-      "title": "sdafgdsfsdfgsdfg",
-      "desc": "sdfgsdfgsdfgsdfgsdfg",
-      "image": "http://localhost:4001/storage/ff800c8d-dbee-49e1-a020-8874cb213a0b.jpg"
-    },
-    {
-      "id": "6a3026a3-7ab0-4de6-a0b9-51aa3bf7c3f9",
-      "title": "asdas",
-      "desc": "dadadasdasd",
-      "image": "http://localhost:4001/storage/6a3026a3-7ab0-4de6-a0b9-51aa3bf7c3f9.jpg"
-    },
-    {
-      "id": "7f2ac88a-3215-4477-8580-5f52548096b6",
-      "title": "TRAAAAAAAAAAAAAAAAAAAAAASH",
-      "desc": "TRAAAAAAAAAAAAAAAAAAAAAASH",
-      "image": "http://localhost:4001/storage/7f2ac88a-3215-4477-8580-5f52548096b6.jpg"
-    },
-    {
-      "id": "7d71a1c9-e216-4ab1-8e38-fb3a7794a2c4",
-      "title": "asd",
-      "desc": "asd",
-      "image": "http://localhost:4001/storage/7d71a1c9-e216-4ab1-8e38-fb3a7794a2c4.jpg"
-    },
-    {
-      "id": "4a2e75a1-1f10-4ef0-a913-ac32558b0462",
-      "title": "ANOTHARE",
-      "desc": "as",
-      "image": "http://localhost:4001/storage/4a2e75a1-1f10-4ef0-a913-ac32558b0462.jpg"
-    },
-    {
-      "id": "c1d9dd80-ad0b-478b-ae83-925071ae13a2",
-      "title": "asd",
-      "desc": "asd",
-      "image": "http://localhost:4001/storage/c1d9dd80-ad0b-478b-ae83-925071ae13a2.jpg"
-    },
-    {
-      "id": "458e6ddf-509c-4e53-b94e-0f8221cc67b2",
-      "title": "asdfasasdf",
-      "desc": "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf",
-      "image": "http://localhost:4001/storage/458e6ddf-509c-4e53-b94e-0f8221cc67b2.jpg"
     }
   ]
 }

@@ -1,0 +1,11 @@
+.wrapper {
+  max-width: var(--width-desktop);
+  margin: 0 auto;
+  padding: 10px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+}
+
+@media (prefers-reduced-motion) {
+}
