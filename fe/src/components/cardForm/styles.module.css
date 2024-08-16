@@ -7,34 +7,8 @@
 
 .formLabel {
   grid-column: 1;
-  padding: 20px 10px 5px 0px;
-}
-
-.formInput {
-  display: block;
-  grid-column: 1 / span 3;
-  box-sizing: border-box;
-  padding: 5px;
-  height: 40px;
-  background-color: none;
-  outline: none;
-}
-
-.formTextArea {
-  resize: none;
-  height: 100px;
-}
-
-.submitButton {
-  grid-column: 3;
-  background: none;
-  margin-top: 20px;
-}
-
-.resetButton {
-  grid-column: 1;
-  background: none;
-  margin-top: 20px;
+  padding: var(--indent);
+  padding-left: 0;
 }
 
 .fileInput {
@@ -44,13 +18,11 @@
   justify-content: center;
   flex-direction: column;
   height: 200px;
-  box-sizing: border-box;
 }
 
 .fileInput svg {
   height: 50%;
   width: 50%;
-  color: var(--cl-green);
 }
 
 .previewImage {
@@ -60,9 +32,30 @@
   object-fit: contain;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .fileInput:hover {
-    background-color: var(--cl-light-blue);
-    cursor: pointer;
-  }
+.formInput {
+  display: block;
+  grid-column: 1 / span 3;
+  padding: var(--indent);
+}
+
+.formTextArea {
+  resize: none;
+  height: 150px;
+}
+
+.submitButton {
+  grid-column: 3;
+  margin-top: var(--indent);
+}
+
+.resetButton {
+  grid-column: 1;
+  margin-top: var(--indent);
+}
+
+.formInput,
+.formTextArea,
+.fileInput {
+  border: var(--border);
+  border-radius: var(--border-radius);
 }

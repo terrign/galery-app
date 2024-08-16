@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import '@/assets/globals.css';
 import { Header } from '@/components/header';
 import { roboto } from '@/assets/font';
-import styles from '@/app/page.module.css';
+import styles from '@/app/styles.module.css';
 
 export const metadata: Metadata = {
   title: 'Galery',
@@ -18,10 +18,8 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={roboto.className}>
-        <div className={styles.wrapper}>
-          <Header />
-          {children}
-        </div>
+        <Header />
+        <div className={styles.wrapper}>{children}</div>
       </body>
     </html>
   );

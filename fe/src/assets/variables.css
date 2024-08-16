@@ -1,0 +1,25 @@
+:root {
+  --cl-blue: rgb(22, 76, 99);
+  --cl-light-blue: rgb(182, 223, 240);
+  --cl-green: rgb(38, 104, 38);
+  --cl-light-green: rgb(97, 207, 97);
+  --cl-white: rgba(255, 255, 255);
+  --cl-green-transparent: rgba(32, 99, 32, 0.24);
+  --cl-light-green-transparent: rgba(3, 201, 135, 0.336);
+
+  --border-radius: 5px;
+  --indent: 10px;
+  --indent-s: 5px;
+  --indent-l: 20px;
+  --font-size: 16px;
+
+  --font-color-main: var(--cl-green);
+  --border-color: var(--cl-green-transparent);
+  --border: thin solid var(--border-color);
+  --hover-color: var(--cl-light-blue);
+
+  --width-desktop: 1440px;
+  --width-tablet: 768px;
+  --width-mobile: 425px;
+  --width-mobile-xs: 320px;
+}

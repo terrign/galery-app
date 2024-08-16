@@ -1,0 +1,11 @@
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  :root {
+    --font-color-main: var(--cl-light-green);
+    --border-color: var(--cl-light-green-transparent);
+    --hover-color: var(--cl-blue);
+  }
+}

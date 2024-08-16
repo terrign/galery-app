@@ -4,10 +4,12 @@ import styles from './styles.module.css';
 import clsx from 'clsx';
 import { roboto } from '@/assets/font';
 import { useState } from 'react';
+import { Button } from '@/components/button';
 
 type TCardFormProps = {
   action: (formData: FormData) => void;
   initData?: {
+    id: string;
     desc: string;
     title: string;
     image: string;
@@ -40,11 +42,19 @@ const CardForm = ({ action, initData }: TCardFormProps) => {
     setImage(dataURI);
   };
 
+  const resetImage = () => {
+    setImage('');
+  };
+
   return (
     <form action={action} className={styles.form}>
-      <label htmlFor='file' className={clsx(styles.fileInput, styles.columnFour, 'border')}>
-        {!image && <PhotoIcon />}
-        {image && <img src={image} alt='Uploaded image preview' className={styles.previewImage} />}
+      <label htmlFor='file' className={clsx(styles.fileInput, styles.columnFour, 'clickable')}>
+        {!image && (
+          <>
+            <PhotoIcon /> Max size: 3 Mb
+          </>
+        )}
+        {image && <img src={image} alt='Image preview' className={styles.previewImage} />}
       </label>
       <input
         onChange={imageInputChangeHandler}
@@ -54,11 +64,11 @@ const CardForm = ({ action, initData }: TCardFormProps) => {
         accept='.png, .jpg, .jpeg, .avif, .webp'
         hidden
       />
-      <label className={clsx(styles.formLabel)} htmlFor='title'>
+      <label className={styles.formLabel} htmlFor='title'>
         Title:
       </label>
       <input
-        className={clsx(styles.formInput, 'border', roboto.className)}
+        className={clsx(styles.formInput, roboto.className)}
         defaultValue={initData?.title}
         type='text'
         id='title'
@@ -66,11 +76,11 @@ const CardForm = ({ action, initData }: TCardFormProps) => {
         required
       />
 
-      <label className={clsx(styles.formLabel)} htmlFor='desc'>
+      <label className={styles.formLabel} htmlFor='desc'>
         Description:
       </label>
       <textarea
-        className={clsx(styles.formInput, 'border', styles.formTextArea, roboto.className)}
+        className={clsx(styles.formInput, styles.formTextArea, roboto.className)}
         defaultValue={initData?.desc}
         id='desc'
         name='desc'
@@ -78,10 +88,12 @@ const CardForm = ({ action, initData }: TCardFormProps) => {
         required
       />
 
-      <button type='reset' className={clsx(styles.resetButton, 'clickable', 'border')} onClick={() => setImage('')}>
+      <Button type='reset' className={styles.resetButton} onClick={resetImage}>
         Reset
-      </button>
-      <button className={clsx(styles.submitButton, 'clickable', 'border')}>Submit</button>
+      </Button>
+      <Button type='submit' className={styles.submitButton}>
+        Submit
+      </Button>
     </form>
   );
 };
