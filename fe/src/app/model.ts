@@ -9,7 +9,9 @@ type TGaleryItem = {
   id: string;
   title: string;
   desc: string;
-  image: string;
+  imageURL: string;
 };
 
-export { RoutePath, type TGaleryItem };
+type TGalery = Record<string, TGaleryItem>;
+
+export { RoutePath, type TGaleryItem, type TGalery };

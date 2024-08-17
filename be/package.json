@@ -2,12 +2,12 @@
   "name": "be",
   "version": "1.0.0",
   "main": "script.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "reset-database": "node db/reset.js",
-    "start-database": "json-server --watch db/db.json --port 4000",
-    "start-storage": "node storage",
-    "clear-storage": "node storage/clear"
+    "reset-database": "node src/reset.js",
+    "seed-database": "node src/seed.js",
+    "run-dev-server": "nodemon src/server.js",
+    "run-server": "node src/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +19,8 @@
     "multer": "^1.4.5-lts.1",
     "prettier": "^3.3.3"
   },
-  "packageManager": "yarn@4.4.0"
+  "packageManager": "yarn@4.4.0",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
 }

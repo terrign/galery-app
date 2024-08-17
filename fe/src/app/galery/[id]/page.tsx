@@ -1,17 +1,35 @@
-import { fetchGaleryItem } from '@/api/api';
+import { fetchGalery, fetchGaleryItem } from '@/api/api';
+import { DeleteButton } from '@/app/galery/[id]/deleteButton';
 import { RoutePath } from '@/app/model';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect, RedirectType } from 'next/navigation';
+
+export async function generateStaticParams() {
+  const items = await fetchGalery();
+  if (!items) {
+    return [];
+  }
+
+  return items.map(({ id }) => ({ id }));
+}
 
 export default async function Page({ params: { id } }: { params: { id: string } }) {
-  const { title, image, desc } = await fetchGaleryItem(id);
-  const link = `/${RoutePath.GALERY}/${id}/${RoutePath.EDIT}`;
+  const item = await fetchGaleryItem(id);
+
+  if (!item) {
+    redirect(`/${RoutePath.GALERY}`, RedirectType.replace);
+  }
+  const editLink = `/${RoutePath.GALERY}/${id}/${RoutePath.EDIT}`;
+
   return (
     <>
-      <h3>{title}</h3>
-      <Image src={image} width='500' height='300' alt={title} priority />
-      <p>{desc}</p>
-      <Link href={link}>Edit</Link>
+      <h3>{item.title}</h3>
+      <Image src={item.imageURL} width="500" height="300" alt={item.title} priority />
+      <p>{item.desc}</p>
+      <Link href={editLink}>Edit</Link>
+      <DeleteButton id={id} />
     </>
   );
 }

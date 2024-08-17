@@ -1,35 +1,56 @@
 'use server';
 import { RoutePath } from '@/app/model';
-import axios from 'axios';
-import { revalidatePath } from 'next/cache';
+import { changeFileName } from '@/utils';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 const createCard = async (formData: FormData) => {
-  const id = crypto.randomUUID();
-  const title = formData.get('title');
-  const desc = formData.get('desc');
-  const file = formData.get('file') as File;
+  const image = formData.get('image') as File;
+  const newImage = changeFileName(image, crypto.randomUUID());
+  formData.set('image', newImage);
+  formData.set('id', crypto.randomUUID());
 
-  const fileExtension = file.name.split('.').pop();
-  const newFileName = `${id}.${fileExtension}`;
-  const newFile = new File([file], newFileName, { type: file.type });
-  formData.set('file', newFile);
-
-  const data = {
-    id,
-    title,
-    desc,
-    image: `http://localhost:4001/storage/${newFileName}`,
-  };
-
-  await Promise.all([
-    axios.post('http://localhost:4001/storage', formData),
-    axios.post(`http://localhost:4000/galery`, data),
-  ]);
-  revalidatePath(RoutePath.GALERY);
-  redirect(RoutePath.GALERY);
+  await fetch('http://localhost:4000/galery', { method: 'POST', body: formData })
+    .catch((e) => console.error(e))
+    .then(() => {
+      revalidateTag('galery');
+      revalidatePath(`/${RoutePath.GALERY}`);
+      redirect(`/${RoutePath.GALERY}`);
+    });
 };
 
-const updateCard = async (formData: FormData) => {};
+const updateCard = async (id: string, formData: FormData) => {
+  const image = formData.get('image') as File;
+  if (image.size === 0) {
+    formData.delete('image');
+  } else {
+    formData.set('image', changeFileName(image, crypto.randomUUID()));
+  }
 
-export { createCard, updateCard };
+  await fetch(`http://localhost:4000/galery/${id}`, {
+    method: 'PATCH',
+    body: formData,
+  })
+    .catch((e) => console.error(e))
+    .then(() => {
+      revalidateTag(id);
+      revalidateTag('galery');
+      revalidatePath(`/${RoutePath.GALERY}`);
+      revalidatePath(`/${RoutePath.GALERY}/${id}`);
+      redirect(`/${RoutePath.GALERY}`);
+    });
+};
+
+const deleteCard = async (id: string) => {
+  await fetch(`http://localhost:4000/galery/${id}`, {
+    method: 'DELETE',
+  })
+    .catch((e) => console.error(e))
+    .then(() => {
+      revalidateTag('galery');
+      revalidatePath(`/${RoutePath.GALERY}`);
+      redirect(`/${RoutePath.GALERY}`);
+    });
+};
+
+export { createCard, updateCard, deleteCard };

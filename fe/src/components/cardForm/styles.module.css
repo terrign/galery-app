@@ -11,25 +11,8 @@
   padding-left: 0;
 }
 
-.fileInput {
+.formImageInput {
   grid-column: 1 / span 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 200px;
-}
-
-.fileInput svg {
-  height: 50%;
-  width: 50%;
-}
-
-.previewImage {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
 }
 
 .formInput {
@@ -54,8 +37,7 @@
 }
 
 .formInput,
-.formTextArea,
-.fileInput {
+.formTextArea {
   border: var(--border);
   border-radius: var(--border-radius);
 }

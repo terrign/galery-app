@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={roboto.className}>
         <Header />
         <div className={styles.wrapper}>{children}</div>
