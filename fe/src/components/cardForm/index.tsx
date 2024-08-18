@@ -22,19 +22,20 @@ const CardForm = ({ action, initData }: TCardFormProps) => {
         Title:
       </label>
       <input
-        className={clsx(styles.formInput, roboto.className)}
+        className={clsx(styles.formInput, roboto.className, styles.focus)}
         defaultValue={initData?.title}
         type="text"
         id="title"
         name="title"
         required
+        maxLength={30}
       />
 
       <label className={styles.formLabel} htmlFor="desc">
         Description:
       </label>
       <textarea
-        className={clsx(styles.formInput, styles.formTextArea, roboto.className)}
+        className={clsx(styles.formInput, styles.formTextArea, roboto.className, styles.focus)}
         defaultValue={initData?.desc}
         id="desc"
         name="desc"

@@ -6,6 +6,7 @@
   --cl-white: rgba(255, 255, 255);
   --cl-green-transparent: rgba(32, 99, 32, 0.24);
   --cl-light-green-transparent: rgba(3, 201, 135, 0.336);
+  --cl-red: rgb(255, 0, 0);
 
   --border-radius: 5px;
   --indent: 10px;
@@ -17,6 +18,7 @@
   --border-color: var(--cl-green-transparent);
   --border: thin solid var(--border-color);
   --hover-color: var(--cl-light-blue);
+  --invalid-color: var(--cl-red);
 
   --width-desktop: 1440px;
   --width-tablet: 768px;

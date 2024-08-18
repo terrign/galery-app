@@ -1,7 +1,6 @@
 import { fetchGalery, fetchGaleryItem } from '@/api/api';
 import { DeleteButton } from '@/app/galery/[id]/deleteButton';
 import { RoutePath } from '@/app/model';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect, RedirectType } from 'next/navigation';

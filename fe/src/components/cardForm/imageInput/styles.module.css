@@ -22,32 +22,24 @@
 }
 
 .shake {
-  color: red;
-  animation: Shake 0.2s ease;
+  color: var(--invalid-color);
+  animation: Shake 0.3s ease-in;
 }
 
 @keyframes Shake {
   0% {
-    transform: translate(0, 0);
+    transform: translate(0px, 0px);
   }
-  10%,
-  90% {
-    transform: translate(-3px, -2px);
+  25% {
+    transform: scale(0.5, 1.5);
   }
-  20%,
-  80% {
-    transform: translate(3px, 2px);
+  50% {
+    transform: scale(1);
   }
-  30%,
-  50%,
-  70% {
-    transform: translate(-3px, 2px);
-  }
-  40%,
-  60% {
-    transform: translate(3px, -2px);
+  75% {
+    transform: scale(0.5, 1.5);
   }
   100% {
-    transform: translate(0, 0);
+    transform: translate(0px, 0px);
   }
 }

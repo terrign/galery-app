@@ -23,7 +23,7 @@ const ImageInput = ({ initImage, className }: { initImage?: string; className: s
 
   const onNotFilled: FormEventHandler<HTMLInputElement> = (e) => {
     setShake(true);
-    setTimeout(() => setShake(false), 200);
+    setTimeout(() => setShake(false), 300);
   };
 
   return (

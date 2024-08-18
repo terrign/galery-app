@@ -37,7 +37,7 @@ const updateCard = async (id: string, formData: FormData) => {
       revalidateTag('galery');
       revalidatePath(`/${RoutePath.GALERY}`);
       revalidatePath(`/${RoutePath.GALERY}/${id}`);
-      redirect(`/${RoutePath.GALERY}`);
+      redirect(`/${RoutePath.GALERY}/${id}`);
     });
 };
 
