@@ -38,3 +38,9 @@ npm run build && npm run start
 ```
 
 #### 6. Open the app http://localhost:3000/
+
+## Useful scripts
+
+- `be/reset-database` - resets database and clears blob storage
+- `be/seed-databse` - creates 30 cards with for galery
+- `fe/clear-cache` - clears next cache

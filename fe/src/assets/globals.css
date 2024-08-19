@@ -47,6 +47,11 @@ button {
   border-radius: var(--border-radius);
 }
 
+.icon {
+  width: var(--font-size);
+  height: var(--font-size);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .clickable:hover {
     background-color: var(--hover-color);

@@ -9,11 +9,7 @@ export default function Page() {
     <div className={styles.notFound}>
       <h1>404 | Not found</h1>
       <p>The item you are looking for has been removed or never existed.</p>
-      <Link
-        href={`/${ERoutePath.GALERY}`}
-        border
-        icon={<ArrowLeftIcon style={{ height: 16, width: 16 }} />}
-      >
+      <Link href={`/${ERoutePath.GALERY}`} border icon={<ArrowLeftIcon className="icon" />}>
         Back to Galery
       </Link>
     </div>

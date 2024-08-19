@@ -4,3 +4,9 @@
   padding: var(--indent-l);
   height: 100%;
 }
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+  max-width: var(--width-mobile);
+}
