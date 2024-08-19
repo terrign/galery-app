@@ -2,45 +2,20 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs/promises');
 const cors = require('cors');
-const multer = require('multer');
-const fsSync = require('fs');
+const { upload } = require('./storage');
+const { getNoExtFileName } = require('./utils');
 
-const constants = require('./constants');
-
-const { DB_PATH, STORAGE_PATH, PORT, URL, CORS_OPTIONS } = constants;
-
-if (!fsSync.existsSync(STORAGE_PATH)) {
-  fsSync.mkdir(STORAGE_PATH, () => {});
-}
-
-const getNoExtFileName = (fileName) => {
-  const arr = fileName.split('.');
-  arr.pop();
-  return arr.join('');
-};
-
-const getImageDir = (fileName) =>
-  path.join(STORAGE_PATH, getNoExtFileName(fileName));
-
-const storage = multer.diskStorage({
-  destination: async (_, file, cb) => {
-    const dir = getImageDir(file.originalname);
-
-    if (!fsSync.existsSync(dir)) {
-      fsSync.mkdir(dir, () => {});
-    }
-
-    cb(null, dir);
-  },
-  filename: (_, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage });
+const {
+  DB_PATH,
+  STORAGE_PATH,
+  PORT,
+  URL,
+  CORS_OPTIONS,
+} = require('./constants');
 
 const app = express();
-app.use(express.json(), cors(CORS_OPTIONS));
+
+app.use(cors(CORS_OPTIONS));
 
 const getDb = async () => JSON.parse(await fs.readFile(DB_PATH));
 
@@ -54,9 +29,23 @@ app.get('/galery/:id', async ({ params }, res) => {
   const data = await getDb();
   const item = data.galery[id];
   if (!item) {
-    return res.status(400).json({ error: `${id} not found` });
+    console.error(`[GET], galery/${id}: Not found \n`, err);
+    return res.status(404).send('Not found');
   }
   return res.status(200).json(item);
+});
+
+app.get('/storage/:id', async function (req, res) {
+  const dirPath = path.join(STORAGE_PATH, req.params.id);
+
+  const fileName = (await fs.readdir(dirPath))[0];
+
+  res.sendFile(path.join(dirPath, fileName), (err) => {
+    if (err) {
+      console.error(`[GET] storage/${id}\nNot found \n`, err);
+      res.status(404).send('Not found');
+    }
+  });
 });
 
 app.post('/galery', upload.single('image'), async ({ body, file }, res) => {
@@ -69,7 +58,7 @@ app.post('/galery', upload.single('image'), async ({ body, file }, res) => {
   data.galery[body.id] = newItem;
   await fs
     .writeFile(DB_PATH, JSON.stringify(data))
-    .catch((e) => console.error(e));
+    .catch((e) => console.error(`[POST] /galery\nbody: ${body}\n`, e));
 
   res.status(200).json(newItem);
 });
@@ -77,29 +66,25 @@ app.post('/galery', upload.single('image'), async ({ body, file }, res) => {
 app.delete('/galery/:id', async ({ params }, res) => {
   const { id } = params;
   const data = await getDb();
+  const item = data.galery[id];
+
+  if (!item) {
+    return res.status(204).send('No content');
+  }
 
   const imageId = data.galery[id].imageURL.split('/').at(-1);
   delete data.galery[id];
 
   await fs.writeFile(DB_PATH, JSON.stringify(data));
-  await fs
-    .rm(path.join(STORAGE_PATH, imageId), { recursive: true, force: true })
-    .catch((e) => console.error(e));
-
-  res.status(200).send('OK');
-});
-
-app.get('/storage/:id', async function (req, res) {
-  const dirPath = path.join(STORAGE_PATH, req.params.id);
-
-  const fileName = (await fs.readdir(dirPath))[0];
-
-  res.sendFile(path.join(dirPath, fileName), (err) => {
-    if (err) {
-      console.error('File not found:', err);
-      res.status(404).send('File not found');
-    }
-  });
+  try {
+    await fs.rm(path.join(STORAGE_PATH, imageId), {
+      recursive: true,
+      force: true,
+    });
+    res.status(204).send('No content');
+  } catch (e) {
+    res.status(204).send('No content');
+  }
 });
 
 app.patch(
@@ -109,6 +94,11 @@ app.patch(
     const id = params.id;
     const data = await getDb();
     const item = data.galery[id];
+
+    if (!item) {
+      console.error(`[PATCH] storage/${id}\nNot found \n`, err);
+      return res.status(404).send('Not found');
+    }
 
     const newItem = {
       ...item,
