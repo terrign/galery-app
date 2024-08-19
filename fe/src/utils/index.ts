@@ -18,4 +18,16 @@ const toDataURI = (file: Blob): Promise<string> => {
   });
 };
 
-export { changeFileName, toDataURI };
+const getImageLazyStylesByIndex = (i: number): { loading: 'lazy' | 'eager'; priority?: true } => {
+  if (i <= 10) {
+    return {
+      priority: true,
+      loading: 'eager',
+    };
+  }
+  return {
+    loading: 'lazy',
+  };
+};
+
+export { changeFileName, toDataURI, getImageLazyStylesByIndex };

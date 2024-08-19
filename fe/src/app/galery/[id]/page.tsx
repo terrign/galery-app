@@ -1,9 +1,10 @@
-import { fetchGalery, fetchGaleryItem } from '@/api/api';
+import { fetchGalery } from '@/api/api';
 import { DeleteButton } from '@/app/galery/[id]/deleteButton';
-import { RoutePath } from '@/app/model';
+import { ERoutePath } from '@/app/model';
 import Image from 'next/image';
-import Link from 'next/link';
-import { redirect, RedirectType } from 'next/navigation';
+import { notFound, redirect, RedirectType } from 'next/navigation';
+import styles from './styles.module.css';
+import { Link } from '@/components/link';
 
 export async function generateStaticParams() {
   const items = await fetchGalery();
@@ -15,20 +16,36 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params: { id } }: { params: { id: string } }) {
-  const item = await fetchGaleryItem(id);
+  const item = (await fetchGalery())?.find((it) => it.id === id);
 
   if (!item) {
-    redirect(`/${RoutePath.GALERY}`, RedirectType.replace);
+    notFound();
+    // redirect(`/${ERoutePath.GALERY}`, RedirectType.replace);
   }
-  const editLink = `/${RoutePath.GALERY}/${id}/${RoutePath.EDIT}`;
+  const editLink = `/${ERoutePath.GALERY}/${id}/${ERoutePath.EDIT}`;
 
   return (
-    <>
-      <h3>{item.title}</h3>
-      <Image src={item.imageURL} width="500" height="300" alt={item.title} priority />
-      <p>{item.desc}</p>
-      <Link href={editLink}>Edit</Link>
-      <DeleteButton id={id} />
-    </>
+    <div className={styles.wrapper}>
+      <div className={styles.imageWrapper}>
+        <Image
+          src={item.imageURL}
+          alt={item.title}
+          priority
+          className={styles.image}
+          height={320}
+          width={425}
+        />
+      </div>
+      <div className={styles.content}>
+        <h2 className={styles.title}>{item.title}</h2>
+        <p>{item.desc}</p>
+        <div className={styles.controls}>
+          <Link href={editLink} border>
+            Edit
+          </Link>
+          <DeleteButton id={id} />
+        </div>
+      </div>
+    </div>
   );
 }

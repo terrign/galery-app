@@ -1,4 +1,4 @@
-enum RoutePath {
+enum ERoutePath {
   HOME = '',
   GALERY = 'galery',
   ADD = 'add',
@@ -14,4 +14,4 @@ type TGaleryItem = {
 
 type TGalery = Record<string, TGaleryItem>;
 
-export { RoutePath, type TGaleryItem, type TGalery };
+export { ERoutePath, type TGaleryItem, type TGalery };

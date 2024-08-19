@@ -1,5 +1,6 @@
 .wrapper {
   max-width: var(--width-desktop);
-  padding: var(--indent);
   margin: 0 auto;
+  padding: var(--indent-l);
+  height: 100%;
 }

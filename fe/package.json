@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clear-next-cache": "rimraf .next"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
@@ -25,6 +26,7 @@
     "eslint-config-next": "14.2.5",
     "json-server": "^1.0.0-beta.1",
     "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
     "typescript": "^5"
   },
   "packageManager": "yarn@4.4.0"

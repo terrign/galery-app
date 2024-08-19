@@ -1,11 +1,13 @@
 'use server';
+import { BASE_URL } from '@/api/constants';
 import { TGalery, TGaleryItem } from '@/app/model';
-
-const DB_URL = 'http://localhost:4000/galery';
 
 const fetchGalery = async () => {
   try {
-    const res = await fetch(DB_URL, { next: { tags: ['galery'] } });
+    const res = await fetch(`${BASE_URL}/galery`, { next: { tags: ['galery'] } });
+    if (!res.ok) {
+      return undefined;
+    }
     const data = (await res.json()) as TGalery;
 
     return Object.values(data);
@@ -17,12 +19,14 @@ const fetchGalery = async () => {
 
 const fetchGaleryItem = async (id: string) => {
   try {
-    const res = await fetch(`${DB_URL}/${id}`, { next: { tags: [id] } });
+    const res = await fetch(`${BASE_URL}/galery/${id}`, { next: { tags: [id] } });
+    if (!res.ok) {
+      return undefined;
+    }
     const json = await res.json();
     return json as TGaleryItem;
   } catch (e) {
     console.error(e);
-    return null;
   }
 };
 

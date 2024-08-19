@@ -1,7 +1,0 @@
-.navLink {
-  gap: var(--indent-s);
-}
-
-.active {
-  background-color: var(--hover-color);
-}

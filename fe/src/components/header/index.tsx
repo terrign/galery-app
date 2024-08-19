@@ -1,7 +1,6 @@
 import { HEADER_LINKS } from '@/components/header/links';
-import { NavLink } from '@/components/navLink';
+import { NavLink } from '@/components/link';
 import styles from './styles.module.css';
-import clsx from 'clsx';
 
 const Header = () => {
   return (

@@ -1,6 +1,7 @@
 .header {
   display: flex;
   position: sticky;
+  width: 100%;
   top: 0;
   padding: var(--indent);
   background-color: rgba(0, 0, 0, 0.8);

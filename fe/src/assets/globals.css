@@ -1,8 +1,10 @@
 @import url('./variables.css');
 @import url('./theme.css');
 
-html {
+html,
+body {
   font-size: var(--font-size);
+  min-height: 100dvh;
 }
 
 * {

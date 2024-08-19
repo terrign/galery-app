@@ -1,0 +1,12 @@
+.link {
+  gap: var(--indent-s);
+}
+
+.border {
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.active {
+  background-color: var(--hover-color);
+}

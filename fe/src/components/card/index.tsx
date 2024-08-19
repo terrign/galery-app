@@ -1,38 +1,20 @@
-import { RoutePath, TGaleryItem } from '@/app/model';
+import { ERoutePath, TGaleryItem } from '@/app/model';
 import Image from 'next/image';
 import styles from './styles.module.css';
-import Link from 'next/link';
-
-const getImageLazyStylesByIndex = (i: number): { loading: 'lazy' | 'eager'; priority?: true } => {
-  if (i <= 12) {
-    return {
-      priority: true,
-      loading: 'eager',
-    };
-  }
-  return {
-    loading: 'lazy',
-  };
-};
+import { Link } from '@/components/link';
+import { getImageLazyStylesByIndex } from '@/utils';
 
 export const Card = ({ imageURL, title, id, index }: TGaleryItem & { index: number }) => {
-  const link = `${RoutePath.GALERY}/${id}`;
-  const imageStyles = getImageLazyStylesByIndex(index);
+  const link = `${ERoutePath.GALERY}/${id}`;
+  const lazyImageStyles = getImageLazyStylesByIndex(index);
   return (
     <div className={styles.card}>
-      <Link href={link}>
-        <figure>
-          <Image
-            src={imageURL}
-            alt={title}
-            height={425}
-            width={320}
-            {...imageStyles}
-            // placeholder="blur"
-          />
+      <figure>
+        <Link href={link} border>
+          <Image src={imageURL} alt={title} height={425} width={320} {...lazyImageStyles} />
           <figcaption>{title}</figcaption>
-        </figure>
-      </Link>
+        </Link>
+      </figure>
     </div>
   );
 };
