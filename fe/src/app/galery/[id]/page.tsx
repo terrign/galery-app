@@ -1,13 +1,15 @@
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import styles from './styles.module.css';
+
 import { fetchGalery } from '@/api/api';
 import { DeleteButton } from '@/app/galery/[id]/deleteButton';
 import { ERoutePath } from '@/app/model';
-import Image from 'next/image';
-import { notFound, redirect, RedirectType } from 'next/navigation';
-import styles from './styles.module.css';
 import { Link } from '@/components/link';
 
 export async function generateStaticParams() {
   const items = await fetchGalery();
+
   if (!items) {
     return [];
   }
@@ -20,8 +22,8 @@ export default async function Page({ params: { id } }: { params: { id: string } 
 
   if (!item) {
     notFound();
-    // redirect(`/${ERoutePath.GALERY}`, RedirectType.replace);
   }
+
   const editLink = `/${ERoutePath.GALERY}/${id}/${ERoutePath.EDIT}`;
 
   return (

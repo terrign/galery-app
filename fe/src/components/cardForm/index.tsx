@@ -1,12 +1,13 @@
 'use client';
 
-import styles from './styles.module.css';
-import clsx from 'clsx';
-import { roboto } from '@/assets/font';
 import { useState } from 'react';
+import clsx from 'clsx';
+import styles from './styles.module.css';
+
+import { TGaleryItem } from '@/app/model';
+import { roboto } from '@/assets/font';
 import { Button } from '@/components/button';
 import { ImageInput } from '@/components/cardForm/imageInput';
-import { TGaleryItem } from '@/app/model';
 
 type TCardFormProps = {
   action: (formData: FormData) => void;
@@ -15,6 +16,7 @@ type TCardFormProps = {
 
 const CardForm = ({ action, initData }: TCardFormProps) => {
   const [key, setKey] = useState(1);
+
   return (
     <form action={action} className={styles.form} key={key}>
       <ImageInput initImage={initData?.imageURL} className={styles.formImageInput} />

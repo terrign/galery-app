@@ -1,7 +1,8 @@
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import styles from './styles.module.css';
+
 import { ERoutePath } from '@/app/model';
 import { Link } from '@/components/link';
-import styles from './styles.module.css';
-import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 export default function Page() {
   return (

@@ -1,10 +1,11 @@
 'use client';
 
-import { toDataURI } from '@/utils';
+import { FormEventHandler, useRef, useState } from 'react';
 import { PhotoIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { FormEventHandler, useRef, useState } from 'react';
 import styles from './styles.module.css';
+
+import { toDataURI } from '@/utils';
 
 const ImageInput = ({ initImage, className }: { initImage?: string; className: string }) => {
   const [image, setImage] = useState(() => initImage ?? '');
@@ -14,14 +15,16 @@ const ImageInput = ({ initImage, className }: { initImage?: string; className: s
 
   const imageInputChangeHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
+
     if (!files) {
       return;
     }
+
     const dataURI = await toDataURI(files[0]);
     setImage(dataURI);
   };
 
-  const onNotFilled: FormEventHandler<HTMLInputElement> = (e) => {
+  const noImageHandler: FormEventHandler<HTMLInputElement> = () => {
     setShake(true);
     setTimeout(() => setShake(false), 300);
   };
@@ -45,7 +48,7 @@ const ImageInput = ({ initImage, className }: { initImage?: string; className: s
         hidden
         aria-hidden
         required={!image}
-        onInvalid={onNotFilled}
+        onInvalid={noImageHandler}
       />
     </>
   );

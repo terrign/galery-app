@@ -1,9 +1,10 @@
 'use client';
-import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
-import styles from './styles.module.css';
-import { TLinkProps } from '@/components/link/model';
+import clsx from 'clsx';
 import { Link } from './link';
+import styles from './styles.module.css';
+
+import { TLinkProps } from '@/components/link/model';
 
 const NavLink = ({ className, border, ...rest }: TLinkProps) => {
   const path = usePathname();

@@ -1,9 +1,10 @@
 'use server';
+import { revalidatePath, revalidateTag } from 'next/cache';
+import { redirect, RedirectType } from 'next/navigation';
+
 import { BASE_URL } from '@/api/constants';
 import { ERoutePath } from '@/app/model';
 import { changeFileName } from '@/utils';
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { redirect, RedirectType } from 'next/navigation';
 
 const createCard = async (formData: FormData) => {
   const image = formData.get('image') as File;
@@ -22,6 +23,7 @@ const createCard = async (formData: FormData) => {
 
 const updateCard = async (id: string, formData: FormData) => {
   const image = formData.get('image') as File;
+
   if (image.size === 0) {
     formData.delete('image');
   } else {
@@ -56,4 +58,4 @@ const deleteCard = async (id: string) => {
     .finally(() => redirect(`/${ERoutePath.GALERY}`, RedirectType.replace));
 };
 
-export { createCard, updateCard, deleteCard };
+export { createCard, deleteCard,updateCard };

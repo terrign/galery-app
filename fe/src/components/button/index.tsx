@@ -1,6 +1,6 @@
 'use client';
-import clsx from 'clsx';
 import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import clsx from 'clsx';
 import styles from './styles.module.css';
 
 type TButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;

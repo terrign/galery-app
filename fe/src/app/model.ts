@@ -14,4 +14,4 @@ type TGaleryItem = {
 
 type TGalery = Record<string, TGaleryItem>;
 
-export { ERoutePath, type TGaleryItem, type TGalery };
+export { ERoutePath, type TGalery,type TGaleryItem };

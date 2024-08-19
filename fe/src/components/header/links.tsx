@@ -1,6 +1,7 @@
-import { ERoutePath } from '@/app/model';
 import { ReactNode } from 'react';
-import { PlusIcon, HomeIcon, PhotoIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, PhotoIcon,PlusIcon } from '@heroicons/react/24/outline';
+
+import { ERoutePath } from '@/app/model';
 
 type THeaderLink = {
   name: string;

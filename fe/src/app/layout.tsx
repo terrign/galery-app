@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import '@/assets/globals.css';
-import { Header } from '@/components/header';
-import { roboto } from '@/assets/font';
 import styles from '@/app/styles.module.css';
+
+import { roboto } from '@/assets/font';
+import { Header } from '@/components/header';
 
 export const metadata: Metadata = {
   title: 'Galery',
