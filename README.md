@@ -1,4 +1,4 @@
-# Test task for SLMax - Galery app
+# Galery app
 
 Allows to add, delete, edit and view galery cards. Build with Next.js and express.
 
